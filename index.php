@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/69c8394ba0.js" crossorigin="anonymous"></script>
 
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -28,12 +28,12 @@
         <div class="row">
             <div class="col-4">
                 <h1>
-                    <a href="/">My blog</a>
+                    <a href="index.php">My blog</a>
                 </h1>
             </div>
             <nav class="col-8">
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-house"></i>Главная</a></li>
+                    <li><a href="index.php"><i class="fa-solid fa-house"></i>Главная</a></li>
                     <li><a href="#"><i class="fa-solid fa-circle-info"></i>О нас</a></li>
                     <li><a href="#"><i class="fa-solid fa-database"></i>Услуги</a></li>
 
@@ -63,19 +63,19 @@
     <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/1.png" class="d-block w-100" alt="...">
+                <img src="assets/images/1.png" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5><a href="">First slide label</a></h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/2.png" class="d-block w-100" alt="...">
+                <img src="assets/images/2.png" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5><a href="">First slide label</a></h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/3.jpg" class="d-block w-100" alt="...">
+                <img src="assets/images/3.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5><a href="">First slide label</a></h5>
                 </div>
@@ -105,7 +105,7 @@
 
             <div class="post row">
                 <div class="img col-12 col-md-4">
-                    <img src="images/1.png" alt="" class="img-thumbnail">
+                    <img src="assets/images/1.png" alt="" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -121,7 +121,7 @@
             </div>
             <div class="post row">
                 <div class="img col-12 col-md-4">
-                    <img src="images/1.png" alt="" class="img-thumbnail">
+                    <img src="assets/images/1.png" alt="" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -137,7 +137,7 @@
             </div>
             <div class="post row">
                 <div class="img col-12 col-md-4">
-                    <img src="images/1.png" alt="" class="img-thumbnail">
+                    <img src="assets/images/1.png" alt="" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -153,7 +153,7 @@
             </div>
             <div class="post row">
                 <div class="img col-12 col-md-4">
-                    <img src="images/1.png" alt="" class="img-thumbnail">
+                    <img src="assets/images/1.png" alt="" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -169,7 +169,7 @@
             </div>
             <div class="post row">
                 <div class="img col-12 col-md-4">
-                    <img src="images/1.png" alt="" class="img-thumbnail">
+                    <img src="assets/images/1.png" alt="" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -185,7 +185,7 @@
             </div>
             <div class="post row">
                 <div class="img col-12 col-md-4">
-                    <img src="images/1.png" alt="" class="img-thumbnail">
+                    <img src="assets/images/1.png" alt="" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>

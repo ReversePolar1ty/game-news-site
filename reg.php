@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/69c8394ba0.js" crossorigin="anonymous"></script>
 
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -27,12 +27,12 @@
         <div class="row">
             <div class="col-4">
                 <h1>
-                    <a href="/">My blog</a>
+                    <a href="index.php">My blog</a>
                 </h1>
             </div>
             <nav class="col-8">
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-house"></i>Главная</a></li>
+                    <li><a href="index.php"><i class="fa-solid fa-house"></i>Главная</a></li>
                     <li><a href="#"><i class="fa-solid fa-circle-info"></i>О нас</a></li>
                     <li><a href="#"><i class="fa-solid fa-database"></i>Услуги</a></li>
 
@@ -53,10 +53,15 @@
 <!--БЛОК HEADER END-->
 <!-- FORM -->
 <div class="container reg_form">
-    <form class="row justify-content-center" method="post" action="log.html">
-        <h2 class="col-12">Авторизация</h2>
+    <form class="row justify-content-center" method="post" action="reg.html">
+        <h2>Регистрация</h2>
         <div class="mb-3 col-12 col-md-4">
-            <label for="formGroupExampleInput" class="form-label">Логин</label>
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Введите ваш email">
+        </div>
+        <div class="w-100"></div>
+        <div class="mb-3 col-12 col-md-4">
+            <label for="formGroupExampleInput" class="form-label">Ваш логин</label>
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">
         </div>
         <div class="w-100"></div>
@@ -66,8 +71,13 @@
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <button type="submit" class="btn btn-primary">Войти</button>
-            <a href="reg.html">Зарегистрироваться</a>
+            <label for="exampleInputPassword2" class="form-label">Повторите пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Повторите пароль">
+        </div>
+        <div class="w-100"></div>
+        <div class="mb-3 col-12 col-md-4">
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+            <a href="log.php">Войти</a>
         </div>
     </form>
 </div>
@@ -122,7 +132,7 @@
             <div class="footer-section contact-form col-md-4 col-12">
                 <h3>Контакты</h3>
                 <br>
-                <form action="index.html" method="post">
+                <form action="index.php" method="post">
                     <input type="email" name="email" class="text-input contact-input" placeholder="Your email address...">
                     <textarea rows="4" name="message" class="text-input contact-input" placeholder="Your message..."></textarea>
                     <button type="submit" class="btn btn-big contact-btn">

@@ -12,7 +12,7 @@
     <script src="https://kit.fontawesome.com/69c8394ba0.js" crossorigin="anonymous"></script>
 
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -20,7 +20,6 @@
     <title>Hello, world!</title>
 </head>
 <body>
-
 <!--БЛОК HEADER START-->
 
 <header class="container-fluid">
@@ -28,12 +27,12 @@
         <div class="row">
             <div class="col-4">
                 <h1>
-                    <a href="/">My blog</a>
+                    <a href="index.php">My blog</a>
                 </h1>
             </div>
             <nav class="col-8">
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-house"></i>Главная</a></li>
+                    <li><a href="index.php"><i class="fa-solid fa-house"></i>Главная</a></li>
                     <li><a href="#"><i class="fa-solid fa-circle-info"></i>О нас</a></li>
                     <li><a href="#"><i class="fa-solid fa-database"></i>Услуги</a></li>
 
@@ -52,58 +51,27 @@
 </header>
 
 <!--БЛОК HEADER END-->
-
-<!--БЛОК MAIN START-->
-
-<div class="container">
-    <div class="content row">
-        <!-- MAIN CONTENT -->
-        <div class="main-content col-md-9 col-12">
-            <h2>Заголовок какой-то новостиЗаголовок какой-то новостиЗаголовок какой-то новостиЗаголовок какой-то новостиЗаголовок какой-то новости
-                Заголовок какой-то новостиЗаголовок какой-то новостиЗаголовок какой-то новости</h2>
-            <div class="single_post row">
-                <div class="img col-12">
-                    <img src="images/1.png" alt="" class="img-thumbnail">
-                </div>
-                <div class="info">
-                    <i class="far fa-user">Имя автора</i>
-                    <i class="far fa-calendar">Mar 11, 2025</i>
-                </div>
-                <div class="single_post_text col-12">
-                    Какой-то текст про новостьКакой-то текст про новостьКакой-то текст про новостьКакой-то текст про новость
-                    Какой-то текст про новостьКакой-то текст про новостьКакой-то текст про новостьКакой-то текст про новость
-                </div>
-            </div>
+<!-- FORM -->
+<div class="container reg_form">
+    <form class="row justify-content-center" method="post" action="log.html">
+        <h2 class="col-12">Авторизация</h2>
+        <div class="mb-3 col-12 col-md-4">
+            <label for="formGroupExampleInput" class="form-label">Логин</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">
         </div>
-
-        <!-- SIDEBAR CONTENT -->
-        <div class="sidebar col-md-3 col-12">
-
-            <div class="section search">
-                <h3>Поиск</h3>
-                <form action="index.html" method="post">
-                    <label>
-                        <input type="text" name="search-term" class="text-input" placeholder="Поиск...">
-                    </label>
-                </form>
-            </div>
-
-            <div class="section topics">
-                <h3>Категории</h3>
-                <ul>
-                    <li><a href="#">Poems</a></li>
-                    <li><a href="#">Quotes</a></li>
-                    <li><a href="#">Fiction</a></li>
-                    <li><a href="#">Inspiration</a></li>
-                    <li><a href="#">Motivation</a></li>
-                    <li><a href="#">Life Lessons</a></li>
-                </ul>
-            </div>
-
+        <div class="w-100"></div>
+        <div class="mb-3 col-12 col-md-4">
+            <label for="exampleInputPassword1" class="form-label">Пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите ваш пароль">
         </div>
-    </div>
+        <div class="w-100"></div>
+        <div class="mb-3 col-12 col-md-4">
+            <button type="submit" class="btn btn-primary">Войти</button>
+            <a href="reg.php">Зарегистрироваться</a>
+        </div>
+    </form>
 </div>
-<!--БЛОК MAIN END-->
+<!-- END FORM -->
 
 <!--FOOTER START-->
 
@@ -154,7 +122,7 @@
             <div class="footer-section contact-form col-md-4 col-12">
                 <h3>Контакты</h3>
                 <br>
-                <form action="index.html" method="post">
+                <form action="index.php" method="post">
                     <input type="email" name="email" class="text-input contact-input" placeholder="Your email address...">
                     <textarea rows="4" name="message" class="text-input contact-input" placeholder="Your message..."></textarea>
                     <button type="submit" class="btn btn-big contact-btn">
@@ -171,16 +139,3 @@
 </div>
 
 <!--БЛОК FOOTER END-->
-
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
--->
-</body>
-</html>
