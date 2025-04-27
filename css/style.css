@@ -132,7 +132,6 @@ header ul li ul li a{
 }
 
 .main-content .post_text{
-    background: white;
     padding: 8px;
     border-radius: 3px;
 }
@@ -161,7 +160,6 @@ header ul li ul li a{
 }
 
 .sidebar .section{
-    background: #ffffff;
     padding-top: 20px;
     border-radius: 3px;
     margin-bottom: 30px;
