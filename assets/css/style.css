@@ -127,6 +127,7 @@ header ul li ul li a{
 
 .carousel-caption h5 a:hover{
     text-decoration: underline;
+    color: red;
 }
 
 /*

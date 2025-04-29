@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $driver = 'mysql';
 $host = 'localhost';
 $db_name = 'game-site';
