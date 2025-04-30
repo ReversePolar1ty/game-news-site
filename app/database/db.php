@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require('connect.php');
 
@@ -19,13 +19,13 @@ function dbCheckError($query){
 }
 
 //Запрос на получение данных одной таблицы
-function selectAll($table, $params = []){
+function selectAll($table, $data = []): array {
     global $pdo;
     $sql = "SELECT * FROM $table";
 
-    if(!empty($params)){
+    if(!empty($data)){
         $i = 0;
-        foreach ($params as $key => $value) {
+        foreach ($data as $key => $value) {
             if($i === 0){
                 $sql = $sql . " WHERE $key = '$value'";
             } else {
@@ -45,15 +45,14 @@ function selectAll($table, $params = []){
 
 }
 
-
 //Запрос на получение одних, конкретных данных с выбранной таблицы
-function selectOne($table, $params = []){
+function selectOne($table, $data = []): array{
     global $pdo;
     $sql = "SELECT * FROM $table";
 
-    if(!empty($params)){
+    if(!empty($data)){
         $i = 0;
-        foreach ($params as $key => $value) {
+        foreach ($data as $key => $value) {
             if($i === 0){
                 $sql = $sql . " WHERE $key = '$value'";
             } else {
@@ -74,9 +73,86 @@ function selectOne($table, $params = []){
 
 }
 
-$params = [
-    'admin' => 1,
-    'username' => 'gamer1234',
+//Запрос на запись в БД
+function insertUserData(string $table, array $data): bool {
+    global $pdo;
+
+    if (empty($data)) {
+        throw new InvalidArgumentException("Data array is empty.");
+    }
+
+    // Список колонок и плейсхолдеров
+    $columns = implode(", ", array_keys($data));
+    $placeholders = ":" . implode(", :", array_keys($data));
+
+    $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+    $stmt = $pdo->prepare($sql);
+
+    // Привязка значений
+    foreach ($data as $key => $value) {
+        $stmt->bindValue(":$key", $value);
+    }
+
+    $success = $stmt->execute();
+    dbCheckError($stmt);
+    return $success;
+}
+
+//Запрос на обновление данных в БД
+function updateUserData(string $table, array $data, int $id): bool {
+    global $pdo;
+
+    if (empty($data)) {
+        throw new InvalidArgumentException("Data array is empty.");
+    }
+
+    // Формируем список пар `column = :column`
+    $setParts = [];
+    foreach ($data as $key => $value) {
+        $setParts[] = "`$key` = :$key";
+    }
+    $setClause = implode(', ', $setParts);
+    echo $setClause;
+
+    $sql = "UPDATE $table SET $setClause WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+
+    // Привязка значений
+    foreach ($data as $key => $value) {
+        $stmt->bindValue(":$key", $value);
+    }
+
+    // Привязка ID
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    $success = $stmt->execute();
+    dbCheckError($stmt);
+    return $success;
+}
+
+//Запрос на удаление данных из БД
+function deleteUserData(string $table, int $id): bool {
+    global $pdo;
+
+    $sql = "DELETE FROM $table WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    $success = $stmt->execute();
+    dbCheckError($stmt);
+    return $success;
+}
+
+
+
+$arrData = [
+    'username' => 'test1',
+    'email' => 'test1',
+    'password' => 'test1',
+    'admin' => '1'
 ];
 
-//Запрос на 
+$userId = 1;
+$table = 'users';
+deleteUserData($table, $userId);
