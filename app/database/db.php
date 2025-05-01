@@ -19,7 +19,7 @@ function dbCheckError($query){
 }
 
 //Запрос на получение данных одной таблицы
-function selectAll($table, $data = []): array {
+function selectAll(string $table, array $data) {
     global $pdo;
     $sql = "SELECT * FROM $table";
 
@@ -46,7 +46,7 @@ function selectAll($table, $data = []): array {
 }
 
 //Запрос на получение одних, конкретных данных с выбранной таблицы
-function selectOne($table, $data = []): array{
+function selectOne(string $table, array $data) {
     global $pdo;
     $sql = "SELECT * FROM $table";
 
@@ -68,13 +68,11 @@ function selectOne($table, $data = []): array{
     $query -> execute();
 
     dbCheckError($query);
-
     return $query->fetch();
-
 }
 
 //Запрос на запись в БД
-function insertUserData(string $table, array $data): bool {
+function insertUserData(string $table, array $data): string {
     global $pdo;
 
     if (empty($data)) {
@@ -93,9 +91,9 @@ function insertUserData(string $table, array $data): bool {
         $stmt->bindValue(":$key", $value);
     }
 
-    $success = $stmt->execute();
+    $stmt->execute();
     dbCheckError($stmt);
-    return $success;
+    return $pdo->lastInsertId();
 }
 
 //Запрос на обновление данных в БД
@@ -143,16 +141,3 @@ function deleteUserData(string $table, int $id): bool {
     dbCheckError($stmt);
     return $success;
 }
-
-
-
-$arrData = [
-    'username' => 'test1',
-    'email' => 'test1',
-    'password' => 'test1',
-    'admin' => '1'
-];
-
-$userId = 1;
-$table = 'users';
-deleteUserData($table, $userId);
