@@ -1,10 +1,8 @@
-﻿<?php
+<?php
 
 include 'app/database/db.php';
 
-
-$isSubmit = false;
-$errorMessage = '';
+$regStatus = '';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = trim($_POST['login']);
@@ -17,15 +15,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($login === '' || $email === '' || $password1 === '') {
 
-        $errorMessage = "Не все поля заполнены!";
+        $regStatus = "Не все поля заполнены!";
 
     } elseif (mb_strlen($login, 'UTF8') < 3){
 
-        $errorMessage = 'Логин должен быть больше трёх символов';
+        $regStatus = 'Логин должен быть больше трёх символов';
 
     } elseif ($password1 !== $password2) {
 
-        $errorMessage = 'Пароли не совпадают';
+        $regStatus = 'Пароли не совпадают';
 
 //    } elseif (mb_strlen($password1, 'UTF8') < 6) {
 //
@@ -35,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $isExist = selectOne('users', ['email' => $email]);
         if (is_array($isExist) && $isExist['email'] === $email){
-            $errorMessage = 'Пользователь с таким email уже существует';
+            $regStatus = 'Пользователь с таким email уже существует';
 
         } else {
 
@@ -48,12 +46,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             $id = insertUserData('users', $userData); //Запись в базу данных
+            $user = selectOne('users', ['id' => $id]);
+
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['login'] = $user['username'];
+            $_SESSION['admin'] = $user['admin'];
+
+            if($_SESSION['admin']) {
+                header('Location: admin/admin.php');
+            } else {
+                header('Location: index.php');
+            }
         }
     }
 
 
 } else {
-    echo 'GET';
     $login = '';
     $email = '';
 }

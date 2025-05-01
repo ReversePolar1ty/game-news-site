@@ -29,6 +29,9 @@
 <div class="container reg_form">
     <form class="row justify-content-center" method="post" action="log.html">
         <h2 class="col-12">Авторизация</h2>
+        <div class="mb-3 col-12 col-md-4 err">
+            <p><?=$regStatus?></p>
+        </div>
         <div class="mb-3 col-12 col-md-4">
             <label for="formGroupExampleInput" class="form-label">Логин</label>
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">

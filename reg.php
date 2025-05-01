@@ -1,5 +1,6 @@
 <?php
 include 'app/controllers/users.php';
+include 'app/database/db.php'
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,7 +34,7 @@ include 'app/controllers/users.php';
     <form class="row justify-content-center" method="post" action="reg.php">
         <h2>Регистрация</h2>
         <div class="mb-3 col-12 col-md-4 err">
-            <p><?=$errorMessage?></p>
+            <p><?=$regStatus?></p>
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
