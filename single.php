@@ -1,3 +1,6 @@
+<?php
+include 'path.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -77,11 +80,12 @@
         </div>
     </div>
 </div>
+
 <!--БЛОК MAIN END-->
 
 <!--FOOTER START-->
 
-<?php include("app/include/footer.php"); ?>
+<?php include("app/include/footer.php") ?>
 
 <!--БЛОК FOOTER END-->
 

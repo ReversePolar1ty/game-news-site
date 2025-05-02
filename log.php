@@ -1,3 +1,7 @@
+<?php
+require_once 'app/controllers/users.php';
+require_once 'path.php'
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,23 +31,24 @@
 <!--БЛОК HEADER END-->
 <!-- FORM -->
 <div class="container reg_form">
-    <form class="row justify-content-center" method="post" action="log.html">
+    <form class="row justify-content-center" method="post" action="log.php">
         <h2 class="col-12">Авторизация</h2>
         <div class="mb-3 col-12 col-md-4 err">
             <p><?=$regStatus?></p>
         </div>
+        <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <label for="formGroupExampleInput" class="form-label">Логин</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Введите ваш логин">
+            <label for="formGroupExampleInput" class="form-label">Email</label>
+            <input name="email" value="<?=$email?>" type="email" class="form-control" id="exampleInputEmail1" placeholder="Введите ваш email">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <label for="exampleInputPassword1" class="form-label">Пароль</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите ваш пароль">
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите ваш пароль">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <button type="submit" class="btn btn-primary">Войти</button>
+            <button name="button-log" type="submit" class="btn btn-primary">Войти</button>
             <a href="reg.php">Зарегистрироваться</a>
         </div>
     </form>

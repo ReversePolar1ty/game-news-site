@@ -47,7 +47,7 @@
             <div class="footer-section contact-form col-md-4 col-12">
                 <h3>Контакты</h3>
                 <br>
-                <form action="index.html" method="post">
+                <form action="<?php echo BASE_URL?>" method="post">
                     <input type="email" name="email" class="text-input contact-input" placeholder="Your email address...">
                     <textarea rows="4" name="message" class="text-input contact-input" placeholder="Your message..."></textarea>
                     <button type="submit" class="btn btn-big contact-btn">

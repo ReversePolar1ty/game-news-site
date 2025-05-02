@@ -1,6 +1,6 @@
 <?php
-include 'app/controllers/users.php';
-include 'app/database/db.php'
+require_once 'app/controllers/users.php';
+require_once 'path.php';
 ?>
 <!doctype html>
 <html lang="en">

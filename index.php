@@ -1,4 +1,7 @@
-<?php include 'app/database/db.php'?>
+<?php
+require 'app/database/db.php';
+require 'path.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -181,7 +184,7 @@
 
             <div class="section search">
                 <h3>Поиск</h3>
-                <form action="index.html" method="post">
+                <form action="<?php echo BASE_URL?>" method="post">
                     <label>
                     <input type="text" name="search-term" class="text-input" placeholder="Поиск...">
                     </label>

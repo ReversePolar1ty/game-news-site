@@ -1,17 +1,29 @@
 <?php
 
-include 'app/database/db.php';
+require 'app/database/db.php';
+require_once 'path.php';
 
 $regStatus = '';
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
+function userSession($userData): void{
+    $_SESSION['id'] = $userData['id'];
+    $_SESSION['login'] = $userData['username'];
+    $_SESSION['admin'] = $userData['admin'];
+
+    if($_SESSION['admin']) {
+        header('Location: ' . BASE_URL . 'admin/admin.php');
+    } else {
+        header('Location: ' . BASE_URL);
+    }
+}
+
+//РЕГИСТРАЦИЯ ПОЛЬЗОВАТЕЛЕЙ
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg']) ) {
     $login = trim($_POST['login']);
     $email = trim($_POST['email']);
     $password1 = trim($_POST['password1']);
     $password2 = trim($_POST['password2']);
     $admin = 0;
-
-
 
     if ($login === '' || $email === '' || $password1 === '') {
 
@@ -48,15 +60,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = insertUserData('users', $userData); //Запись в базу данных
             $user = selectOne('users', ['id' => $id]);
 
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['login'] = $user['username'];
-            $_SESSION['admin'] = $user['admin'];
-
-            if($_SESSION['admin']) {
-                header('Location: admin/admin.php');
-            } else {
-                header('Location: index.php');
-            }
+            userSession($user);
         }
     }
 
@@ -64,4 +68,25 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     $login = '';
     $email = '';
+}
+
+//АВТОРИЗАЦИЯ ПОЛЬЗОВАТЕЛЕЙ
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])){
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+
+    if ($email === '' || $password === '') {
+        $regStatus = 'Неверный пароль';
+    } else {
+        $isExist = selectOne('users', ['email' => $email]);
+        if (is_array($isExist) && password_verify($password, $isExist['password'])) {
+
+            userSession($isExist);
+
+        } else {
+            $regStatus = 'Неверные данные';
+        }
+    }
+
 }
