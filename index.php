@@ -1,6 +1,6 @@
 <?php
-require 'app/database/db.php';
-require 'path.php';
+require_once 'app/database/db.php';
+require_once 'path.php';
 ?>
 <!doctype html>
 <html lang="en">

@@ -1,7 +1,7 @@
 <?php
 
-require 'app/database/db.php';
-require_once 'path.php';
+include_once __DIR__ . '/../database/db.php';
+include_once __DIR__ . '/../../path.php';
 
 $regStatus = '';
 
@@ -11,7 +11,7 @@ function userSession($userData): void{
     $_SESSION['admin'] = $userData['admin'];
 
     if($_SESSION['admin']) {
-        header('Location: ' . BASE_URL . 'admin/admin.php');
+        header('Location: ' . BASE_URL . 'admin/posts/index.php');
     } else {
         header('Location: ' . BASE_URL);
     }
