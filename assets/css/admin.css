@@ -113,8 +113,8 @@ header ul li ul li a {
     color: #ffffff;
 }
 .footer .about .socials a:hover {
-    border: 1px solid white;
-    color: white;
+    border: 1px solid red;
+    color: red;
     transition: all .3s;
 }
 
@@ -128,7 +128,7 @@ header ul li ul li a {
 }
 
 .footer .links ul a:hover {
-    color: white;
+    color: red;
     margin-left: 15px;
     transition: all .3s;
 }

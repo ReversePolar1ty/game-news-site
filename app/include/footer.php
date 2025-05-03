@@ -4,7 +4,7 @@
     <div class="footer-content container">
         <div class="row">
             <div class="footer-section about col-md-4 col-12">
-                <h3 class="logo-text">Мой блог</h3>
+                <h3 class="logo-text">GameNews</h3>
                 <p>
                     ВидеоигроксВидеоигроксВидеоигроксВидеоигрокс
                     ВидеоигроксВидеоигрокс
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; myblog.com | Designed by Me
+            &copy; GameNews.com | Designed by Me
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
-﻿<?php
+<?php
 include_once "../../path.php";
-//include "../../app/controllers/topics.php";
+include_once "../../app/controllers/topics.php";
+include_once "../../app/database/db.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,6 +29,7 @@ include_once "../../path.php";
 <?php include("../../app/include/header-admin.php"); ?>
 
 <div class="container">
+
     <?php include "../../app/include/sidebar-admin.php"; ?>
 
     <div class="posts col-9">
@@ -40,14 +42,18 @@ include_once "../../path.php";
             <h2>Создать категорию</h2>
         </div>
         <div class="row add-post">
+            <div class="col-12 col-md-4 err">
+                <p><?=$createStatus?></p>
+            </div>
             <div class="mb-12 col-12 col-md-12 err"></div>
             <form action="create.php" method="post">
                 <div class="col">
-                    <input name="name" value="" type="text" class="form-control" placeholder="Имя категории" aria-label="Имя категории">
+                    <label for="content" class="form-label">Название категории</label>
+                    <input name="title" value="<?=$title?>" type="text" class="form-control" placeholder="" aria-label="Название категории">
                 </div>
                 <div class="col">
                     <label for="content" class="form-label">Описание категории</label>
-                    <textarea name="description" class="form-control" id="content" rows="3"></textarea>
+                    <textarea name="description" class="form-control" id="content" rows="3"><?=$description?></textarea>
                 </div>
                 <div class="col">
                     <button name="topic-create" class="btn btn-primary" type="submit">Создать категорию</button>

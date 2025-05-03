@@ -1,7 +1,6 @@
 <?php
-include_once "../../path.php";
-//include "../../app/controllers/posts.php";
-session_start()
+    include_once "../../path.php";
+    include "../../app/controllers/topics.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,33 +32,27 @@ session_start()
 
     <div class="posts col-9">
         <div class="button row">
-            <a href="<?php echo BASE_URL . "admin/posts/create.php";?>" class="col-2 btn btn-success">Добавить категорию</a>
+            <a href="<?php echo BASE_URL . "admin/topics/create.php";?>" class="col-2 btn btn-success">Создать</a>
             <span class="col-1"></span>
-            <a href="<?php echo BASE_URL . "admin/posts/index.php";?>" class="col-3 btn btn-warning">Управлять категориями</a>
+            <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-3 btn btn-warning">Редактировать</a>
+        </div>
+        <div class="col-12 col-md-4 err">
+            <p><?=$createStatus?></p>
         </div>
         <div class="row title-table">
-            <h2>Управление категориями</h2>
-<!--            <div class="mb-12 col-12 col-md-12 err"></div>-->
+            <h2>Редактировать категории</h2>
             <div class="col-1">ID</div>
             <div class="col-5">Название</div>
             <div class="col-4">Управление</div>
         </div>
+        <?php foreach ($allTopics as $key => $topic) : ?>
         <div class="row post">
-            <div class="id col-1"></div>
-            <div class="title col-5">Программирование</div>
-            <div class="red col-1"><a href="#">edit</a></div>
-            <div class="del col-1"><a href="#">delete</a></div>
-            <!--            <div class="status col-2"><a href="#">unpublish</a></div>-->
-            <!--            <div class="status col-2"><a href="#">publish</a></div>-->
+            <div class="id col-1"><?=$key + 1; ?></div>
+            <div class="title col-5"><?=$topic['title']?></div>
+            <div class="red col-1"><a href="edit.php?id=<?=$topic['id']; ?>">edit</a></div>
+            <div class="del col-1"><a href="edit.php?delete_id=<?=$topic['id']; ?>">delete</a></div>
         </div>
-        <div class="row post">
-            <div class="id col-1"></div>
-            <div class="title col-5">Путешествие</div>
-            <div class="red col-1"><a href="#">edit</a></div>
-            <div class="del col-1"><a href="#">delete</a></div>
-            <!--            <div class="status col-2"><a href="#">unpublish</a></div>-->
-            <!--            <div class="status col-2"><a href="#">publish</a></div>-->
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
 

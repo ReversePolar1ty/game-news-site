@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg']) ) {
                 'admin' => $admin
             ];
 
-            $id = insertUserData('users', $userData); //Запись в базу данных
+            $id = insertData('users', $userData); //Запись в базу данных
             $user = selectOne('users', ['id' => $id]);
 
             userSession($user);

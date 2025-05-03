@@ -7,6 +7,7 @@ function test($value){
     echo '<pre>';
     print_r($value);
     echo '</pre>';
+    exit();
 }
 
 //Проверка выполнения запроса к БД
@@ -20,7 +21,7 @@ function dbCheckError($query){
 }
 
 //Запрос на получение данных одной таблицы
-function selectAll(string $table, array $data) {
+function selectAll(string $table, $data = []) {
     global $pdo;
     $sql = "SELECT * FROM $table";
 
@@ -73,7 +74,7 @@ function selectOne(string $table, array $data) {
 }
 
 //Запрос на запись в БД
-function insertUserData(string $table, array $data): string {
+function insertData(string $table, array $data): string {
     global $pdo;
 
     if (empty($data)) {
@@ -98,7 +99,7 @@ function insertUserData(string $table, array $data): string {
 }
 
 //Запрос на обновление данных в БД
-function updateUserData(string $table, array $data, int $id): bool {
+function updateData(string $table, array $data, int $id): void {
     global $pdo;
 
     if (empty($data)) {
@@ -124,13 +125,12 @@ function updateUserData(string $table, array $data, int $id): bool {
     // Привязка ID
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-    $success = $stmt->execute();
+    $stmt->execute();
     dbCheckError($stmt);
-    return $success;
 }
 
 //Запрос на удаление данных из БД
-function deleteUserData(string $table, int $id): bool {
+function deleteData(string $table, int $id): void {
     global $pdo;
 
     $sql = "DELETE FROM $table WHERE id = :id";
@@ -138,7 +138,6 @@ function deleteUserData(string $table, int $id): bool {
 
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 
-    $success = $stmt->execute();
+    $stmt->execute();
     dbCheckError($stmt);
-    return $success;
 }

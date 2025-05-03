@@ -34,7 +34,7 @@ require_once '../../app/controllers/users.php';
         <div class="button row">
             <a href="<?php echo BASE_URL . "admin/users/create.php";?>" class="col-2 btn btn-success">Создать</a>
             <span class="col-1"></span>
-            <a href="<?php echo BASE_URL . "admin/posts/index.php";?>" class="col-3 btn btn-warning">Управление</a>
+            <a href="<?php echo BASE_URL . "admin/users/index.php";?>" class="col-3 btn btn-warning">Управление</a>
         </div>
         <div class="row title-table">
             <h2>Создать пользователя</h2>
@@ -56,10 +56,12 @@ require_once '../../app/controllers/users.php';
                     <label for="exampleInputPassword1" class="form-label">Пароль</label>
                     <input name="password1" type="password" class="form-control" id="exampleInputPassword1">
                 </div>
+                <br>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>User</option>
                     <option value="1">Admin</option>
                 </select>
+                <br>
                 <div class="col">
                     <label for="exampleInputPassword2" class="form-label">Повторите пароль</label>
                     <input name="password2" type="password" class="form-control" id="exampleInputPassword2">
