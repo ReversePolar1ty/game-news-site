@@ -1,7 +1,6 @@
 <?php
 include_once "../../path.php";
-//include "../../app/controllers/posts.php";
-session_start()
+include_once "../../app/controllers/posts.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,15 +46,20 @@ session_start()
             <div class="col-2">Автор</div>
             <div class="col-4">Управление</div>
         </div>
+        <?php foreach ($postAdm as $key => $post) : ?>
         <div class="row post">
-            <div class="id col-1"></div>
-            <div class="title col-5">Какая-то статья</div>
-            <div class="author col-2">Какой-то автор</div>
+            <div class="id col-1"><?=$key + 1; ?></div>
+            <div class="title col-5"><?=$post['title']; ?></div>
+            <div class="author col-2"><?=$post['username']; ?></div>
             <div class="red col-1"><a href="#">edit</a></div>
             <div class="del col-1"><a href="#">delete</a></div>
-<!--            <div class="status col-2"><a href="#">unpublish</a></div>-->
-<!--            <div class="status col-2"><a href="#">publish</a></div>-->
+            <?php if ($post['status']): ?>
+                <div class="status col-2"><a href="#">Unpublish</a></div>
+            <?php else: ?>
+                <div class="status col-2"><a href="#">Publish</a></div>
+            <?php endif; ?>
         </div>
+        <?php endforeach; ?>
     </div>
 </div>
 

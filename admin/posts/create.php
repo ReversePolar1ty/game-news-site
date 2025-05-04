@@ -1,7 +1,6 @@
 <?php
 include_once "../../path.php";
-//include_once "../../app/controllers/posts.php";
-session_start()
+include_once "../../app/controllers/posts.php";
 ?>
 <!doctype html>
 <html lang="ru">
@@ -42,28 +41,36 @@ session_start()
         </div>
         <div class="row add-post">
             <div class="mb-12 col-12 col-md-12 err">
-                <!-- Вывод массива с ошибками -->
             </div>
             <form action="create.php" method="post" enctype="multipart/form-data">
+                <?php if ($createStatus !== null): ?>
+                <div class="col-12 col-md-4 err">
+                    <p><?=$createStatus?></p>
+                </div>
+                <?php endif; ?>
                 <div class="col mb-4">
-                    <input value="" name="title" type="text" class="form-control" placeholder="Title" aria-label="Название статьи">
+                    <input value="" name="title" type="text" class="form-control" placeholder="Название" aria-label="Название статьи">
                 </div>
                 <div class="col">
                     <label for="editor" class="form-label">Содержимое записи</label>
-                    <textarea id="editor" class="form-control" rows="6"></textarea>
+                    <textarea name="content" id="editor" class="form-control" rows="6"></textarea>
                 </div>
-                <div class="input-group col mb-2">
+                <div class="input-group col mb-4 mt-4">
                     <input name="img" type="file" class="form-control" id="inputGroupFile02">
-                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    <label class="input-group-text" for="inputGroupFile02">Загрузить</label>
                 </div>
                 <select name="topic" class="form-select mb-2" aria-label="Default select example">
-                    <option selected>Категория поста:</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected>Выберите категорию</option>
+                    <?php foreach ($allTopics as $key => $topic) : ?>
+                        <option value="<?=$topic['id']?>"><?=$topic['title']?></option>
+                    <?php endforeach; ?>
                 </select>
-                <div class="col mb-2">
-                    <button class="btn btn-primary" type="submit">Сохранить запись</button>
+                <div class="form-check col mb-2">
+                    <input class="form-check-input" type="checkbox" name="publish" id="PublishCheckbox">
+                    <label class="form-check-label" for="PublishCheckbox">Publish</label>
+                </div>
+                <div class="col col-6">
+                    <button name="post_create" class="btn btn-primary" type="submit">Добавить запись</button>
                 </div>
             </form>
         </div>

@@ -5,6 +5,7 @@ include_once __DIR__ . '/../../path.php';
 
 $regStatus = '';
 
+//ЗАПУСК СЕССИИ ПОЛЬЗОВАТЕЛЯ
 function userSession($userData): void{
     $_SESSION['id'] = $userData['id'];
     $_SESSION['login'] = $userData['username'];

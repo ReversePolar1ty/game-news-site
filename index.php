@@ -1,6 +1,6 @@
 <?php
-require_once 'app/database/db.php';
 require_once 'path.php';
+require_once 'app/controllers/topics.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -190,19 +190,14 @@ require_once 'path.php';
                     </label>
                 </form>
             </div>
-
             <div class="section topics">
                 <h3>Категории</h3>
+                <?php foreach ($allTopics as $key => $topic) : ?>
                 <ul>
-                    <li><a href="#">Poems</a></li>
-                    <li><a href="#">Quotes</a></li>
-                    <li><a href="#">Fiction</a></li>
-                    <li><a href="#">Inspiration</a></li>
-                    <li><a href="#">Motivation</a></li>
-                    <li><a href="#">Life Lessons</a></li>
+                    <li><a href="#"><?=$topic['title']?></a></li>
                 </ul>
+                <?php endforeach; ?>
             </div>
-
         </div>
     </div>
 </div>
