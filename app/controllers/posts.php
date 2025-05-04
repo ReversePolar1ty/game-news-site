@@ -21,6 +21,28 @@ $postAdm = selectAllFromPostsWithUsers('posts', 'users'); //МАССИВ ОБЪ�
 //СОЗДАНИЕ ПОСТА
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_create'])) {
 
+    if (!empty($_FILES['img']['name'])) {
+        $imgName = time() . $_FILES['img']['name'];
+        $fileTmpName = $_FILES['img']['tmp_name'];
+        $fileType = $_FILES['img']['type'];
+        $imgPath = ROOT_PATH . "\assets\images\posts\\" . $imgName;
+
+        if(strpos($fileType, 'image') === false) {
+            die("Файл не является изображением");
+        } else {
+
+            $result = move_uploaded_file($fileTmpName, $imgPath);
+            if ($result) {
+                $_POST['img'] = $imgName;
+            } else {
+                $createStatus = "Ошибка загрузки изображения на сервер";
+            }
+        }
+        
+    } else {
+        $createStatus = "Ошибка получения изображения";
+    }
+
     $post_title = trim($_POST['title']);
     $content = trim($_POST['content']);
     $topic = trim($_POST['topic']);
