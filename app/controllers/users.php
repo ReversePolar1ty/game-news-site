@@ -3,7 +3,7 @@
 include_once __DIR__ . '/../database/db.php';
 include_once __DIR__ . '/../../path.php';
 
-$regStatus = '';
+$errMsg = [];
 
 //ЗАПУСК СЕССИИ ПОЛЬЗОВАТЕЛЯ
 function userSession($userData): void{
@@ -28,25 +28,25 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg']) ) {
 
     if ($login === '' || $email === '' || $password1 === '') {
 
-        $regStatus = "Не все поля заполнены!";
+        array_push($errMsg, "Не все поля заполнены!");
 
     } elseif (mb_strlen($login, 'UTF8') < 3){
 
-        $regStatus = 'Логин должен быть больше трёх символов';
+        array_push($errMsg, 'Логин должен быть больше трёх символов');
 
     } elseif ($password1 !== $password2) {
 
-        $regStatus = 'Пароли не совпадают';
+        array_push($errMsg, 'Пароли не совпадают');
 
 //    } elseif (mb_strlen($password1, 'UTF8') < 6) {
 //
-//        $errorMessage = 'Пароль должен быть более шести символов';
+//        array_push($errMsg, 'Пароль должен быть более шести символов');
 
     } else {
 
         $isExist = selectOne('users', ['email' => $email]);
         if (is_array($isExist) && $isExist['email'] === $email){
-            $regStatus = 'Пользователь с таким email уже существует';
+            array_push($errMsg, 'Пользователь с таким email уже существует');
 
         } else {
 
@@ -78,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])){
 
 
     if ($email === '' || $password === '') {
-        $regStatus = 'Неверный пароль';
+        array_push($errMsg, 'Неверный пароль');
     } else {
         $isExist = selectOne('users', ['email' => $email]);
         if (is_array($isExist) && password_verify($password, $isExist['password'])) {
@@ -86,7 +86,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])){
             userSession($isExist);
 
         } else {
-            $regStatus = 'Неверные данные';
+            array_push($errMsg, 'Неверные данные');
         }
     }
 

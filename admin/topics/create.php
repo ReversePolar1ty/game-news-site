@@ -42,16 +42,16 @@ include_once "../../app/database/db.php";
             <h2>Создать категорию</h2>
         </div>
         <div class="row add-post">
-            <div class="col-12 col-md-4 err">
-                <p><?=$createStatus?></p>
+            <div class="mb-12 col-12 col-md-12 err">
+                <!--                    Вывод массива с ошибками-->
+                <p><?php include_once "../../app/support/errorInfo.php";?></p>
             </div>
-            <div class="mb-12 col-12 col-md-12 err"></div>
             <form action="create.php" method="post">
-                <div class="col">
+                <div class="col mb-4">
                     <label for="content" class="form-label">Название категории</label>
                     <input name="title" value="<?=$title?>" type="text" class="form-control" placeholder="" aria-label="Название категории">
                 </div>
-                <div class="col">
+                <div class="col mb-4">
                     <label for="content" class="form-label">Описание категории</label>
                     <textarea name="description" class="form-control" id="content" rows="3"><?=$description?></textarea>
                 </div>

@@ -40,27 +40,25 @@ include_once "../../app/controllers/posts.php";
             <h2>Добавление записи</h2>
         </div>
         <div class="row add-post">
-            <div class="mb-12 col-12 col-md-12 err">
-            </div>
             <form action="create.php" method="post" enctype="multipart/form-data">
-                <?php if ($createStatus !== null): ?>
-                <div class="col-12 col-md-4 err">
-                    <p><?=$createStatus?></p>
+                <div class="mb-12 col-12 col-md-12 err">
+<!--                    Вывод массива с ошибками-->
+                    <p><?php include_once "../../app/support/errorInfo.php";?></p>
                 </div>
-                <?php endif; ?>
                 <div class="col mb-4">
-                    <input value="" name="title" type="text" class="form-control" placeholder="Название" aria-label="Название статьи">
+                    <label for="post_title" class="form-label">Название</label>
+                    <input id="post_title" value="<?=$post_title?>" name="title" type="text" class="form-control" aria-label="Название статьи">
                 </div>
                 <div class="col">
                     <label for="editor" class="form-label">Содержимое записи</label>
-                    <textarea name="content" id="editor" class="form-control" rows="6"></textarea>
+                    <textarea name="content" id="editor" class="form-control" rows="6"><?=$content?></textarea>
                 </div>
                 <div class="input-group col mb-4 mt-4">
                     <input name="img" type="file" class="form-control" id="inputGroupFile02">
                     <label class="input-group-text" for="inputGroupFile02">Загрузить</label>
                 </div>
                 <select name="topic" class="form-select mb-2" aria-label="Default select example">
-                    <option selected>Выберите категорию</option>
+                    <option selected disabled>Выберите категорию</option>
                     <?php foreach ($allTopics as $key => $topic) : ?>
                         <option value="<?=$topic['id']?>"><?=$topic['title']?></option>
                     <?php endforeach; ?>

@@ -36,11 +36,8 @@
             <span class="col-1"></span>
             <a href="<?php echo BASE_URL . "admin/topics/index.php";?>" class="col-3 btn btn-warning">Редактировать</a>
         </div>
-        <div class="col-12 col-md-4 err">
-            <p><?=$createStatus?></p>
-        </div>
         <div class="row title-table">
-            <h2>Редактировать категории</h2>
+            <h2 class="mb-4">Редактировать категории</h2>
             <div class="col-1">ID</div>
             <div class="col-5">Название</div>
             <div class="col-4">Управление</div>

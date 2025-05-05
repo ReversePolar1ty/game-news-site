@@ -345,11 +345,17 @@ header ul li ul li a{
 
 
 /*
-    FORMS
+error msg
  */
-
-form div.err {
-    color: red;
-    font-style: italic;
-    font-size: 1rem;
+.reg_form .err{
+    text-align: center;
+    padding: 1px 0;
+    color: #A52A2A;
+}
+.reg_form .err ul{
+    text-align: center;
+    list-style-type: none;
+    color: #A52A2A;
+    padding-left: 10px;
+    font-weight: 500;
 }

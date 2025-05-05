@@ -286,7 +286,7 @@ SIDEBAR
 error msg
  */
 .add-post .err{
-    padding: 1rem 0;
+    padding: 1px 0;
     color: #A52A2A;
 }
 .add-post .err ul{

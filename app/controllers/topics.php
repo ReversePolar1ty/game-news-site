@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ .  "/../database/db.php";
 
-$createStatus = '';
+$errMsg = [];
 
 $title = '';
 $description = '';
@@ -13,14 +13,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-create'])) {
 
     if ($title === '' || $description === '') {
 
-        $createStatus = "Не все поля заполнены";
+        array_push($errMsg, "Не все поля заполнены");
 
 
     } else {
 
         $isExist = selectOne('topics', ['title' => $title]);
         if (is_array($isExist) && mb_strtolower($isExist['title']) === mb_strtolower($title)){
-            $createStatus = 'Категория с таким названием уже существует';
+            array_push($errMsg, 'Категория с таким названием уже существует');
 
         } else {
 
@@ -61,13 +61,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) { //Р�
 
     if ($title === '' || $description === '') {
 
-        $createStatus = "Не все поля заполнены";
+        array_push($errMsg, "Не все поля заполнены");
 
     } else {
 
 //        $isExist = selectOne('topics', ['title' => $title]);
 //        if (is_array($isExist) && mb_strtolower($isExist['title']) === mb_strtolower($title)){
-//            $createStatus = 'Категория с таким названием уже существует';
+//            array_push($errMsg, 'Категория с таким названием уже существует');
 
 //        } else {
 

@@ -6,11 +6,11 @@ if(!$_SESSION){
     header("Location: " . BASE_URL . "log.php");
 }
 
-$createStatus = null;
+$errMsg = [];
 
 $post_title = '';
 $content = '';
-$image = '';
+$img = '';
 $id = '';
 $topic = '';
 
@@ -19,58 +19,65 @@ $posts = selectAll('posts'); //ПОЛУЧЕНИЕ ВСЕХ ПОСТОВ
 $postAdm = selectAllFromPostsWithUsers('posts', 'users'); //МАССИВ ОБЪЕДИНЁННЫХ БД ДЛЯ ПОЛУЧЕНИЯ НИКА
 
 //СОЗДАНИЕ ПОСТА
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_create'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_create'])) {
 
+    // Проверка изображения
     if (!empty($_FILES['img']['name'])) {
-        $imgName = time() . $_FILES['img']['name'];
+        $imgName = time() . "_" . $_FILES['img']['name'];
         $fileTmpName = $_FILES['img']['tmp_name'];
-        $fileType = $_FILES['img']['type'];
+        $fileType = mime_content_type($fileTmpName); // более точная проверка
         $imgPath = ROOT_PATH . "\assets\images\posts\\" . $imgName;
 
-        if(strpos($fileType, 'image') === false) {
-            die("Файл не является изображением");
+        if (strpos($fileType, 'image') !== 0) {
+            array_push($errMsg, "Файл не является изображением");
         } else {
-
             $result = move_uploaded_file($fileTmpName, $imgPath);
             if ($result) {
                 $_POST['img'] = $imgName;
             } else {
-                $createStatus = "Ошибка загрузки изображения на сервер";
+                array_push($errMsg, "Ошибка загрузки изображения на сервер");
             }
         }
-        
     } else {
-        $createStatus = "Ошибка получения изображения";
+        $_POST['img'] = null; // если файл не загружен
     }
 
+    // Получение и валидация других данных
     $post_title = trim($_POST['title']);
     $content = trim($_POST['content']);
-    $topic = trim($_POST['topic']);
-    $image = $_FILES['img'];
-
-    $publish = isset($_POST['publish'])  ? 1 : 0;
+    if (!empty($_POST['topic'])) {
+        $topic = trim($_POST['topic']);
+    }
+    $publish = isset($_POST['publish']) ? 1 : 0;
 
     if ($post_title === '' || $content === '' || $topic === '') {
 
-        $createStatus = "Не все поля заполнены";
+        array_push($errMsg, "Не все поля заполнены");
 
     } elseif (mb_strlen($post_title, 'UTF-8') < 6) {
 
-        $createStatus = "Название статьи должно быть более шести символов";
+        array_push($errMsg, "Название статьи должно быть более шести символов");
 
-    }else {
+    }
+
+    // Если есть ошибки — не продолжаем
+    if (!empty($errMsg)) {
+        return;
+    } else {
         $post = [
             'id_user' => $_SESSION['id'],
             'title' => $post_title,
             'content' => $content,
-            'img' => $image['name'],
+            'img' => $_POST['img'],
             'status' => $publish,
             'id_topic' => $topic,
         ];
 
-        insertData('posts', $post); //Запись в базу данных
+        insertData('posts', $post); // Запись в базу данных
         header('location: index.php');
+        exit();
     }
+
 } else {
     $post_title = '';
     $content = '';

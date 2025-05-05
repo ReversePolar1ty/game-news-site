@@ -33,8 +33,9 @@ require_once 'path.php'
 <div class="container reg_form">
     <form class="row justify-content-center" method="post" action="log.php">
         <h2 class="col-12">Авторизация</h2>
-        <div class="mb-3 col-12 col-md-4 err">
-            <p><?=$regStatus?></p>
+        <div class="mb-12 col-12 col-md-12 err">
+            <!--                    Вывод массива с ошибками-->
+            <p><?php include_once "app/support/errorInfo.php";?></p>
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
