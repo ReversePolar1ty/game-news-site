@@ -51,7 +51,7 @@ include_once "../../app/controllers/posts.php";
             <div class="id col-1"><?=$key + 1; ?></div>
             <div class="title col-5"><?=$post['title']; ?></div>
             <div class="author col-2"><?=$post['username']; ?></div>
-            <div class="red col-1"><a href="#">edit</a></div>
+            <div class="red col-1"><a href="edit.php?id=<?=$post['id'];?>">edit</a></div>
             <div class="del col-1"><a href="#">delete</a></div>
             <?php if ($post['status']): ?>
                 <div class="status col-2"><a href="#">Unpublish</a></div>
